@@ -1,0 +1,32 @@
+{
+  "name": "zedu-api-automation",
+  "version": "1.0.0",
+  "description": "API automation suite for Zedu Chat staging API",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --runInBand --verbose --detectOpenHandles",
+    "test:auth": "jest tests/auth.test.js --runInBand --verbose",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [
+    "api",
+    "automation",
+    "jest",
+    "supertest"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@faker-js/faker": "^9.3.0",
+    "axios": "^1.15.2",
+    "dotenv": "^16.6.1",
+    "mocha": "^11.7.5"
+  },
+  "devDependencies": {
+    "jest": "29.7.0",
+    "supertest": "7.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
