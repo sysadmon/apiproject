@@ -1,5 +1,6 @@
 const apiClient = require('./apiClient');
 const DataFactory = require('./dataFactory');
+require('dotenv').config();
 
 class AuthManager {
   constructor() {
@@ -29,6 +30,32 @@ class AuthManager {
     const { userData } = await this.register();
     await this.login(userData.email, userData.password);
     return userData;
+  }
+
+  async loginWithTestUser() {
+    await this.login(process.env.TEST_USER, process.env.TEST_USER_PASSWORD);
+  }
+
+  async ensureTestUserLoggedIn() {
+    try {
+      await this.login(process.env.TEST_USER, process.env.TEST_USER_PASSWORD);
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        // Register the test user
+        const userData = {
+          username: process.env.TEST_USER.split('@')[0],
+          email: process.env.TEST_USER,
+          password: process.env.TEST_USER_PASSWORD,
+          first_name: 'Test',
+          last_name: 'User',
+          phone_number: '+2341234567890'
+        };
+        await apiClient.post('/auth/register', userData);
+        await this.login(process.env.TEST_USER, process.env.TEST_USER_PASSWORD);
+      } else {
+        throw error;
+      }
+    }
   }
 
   async getOnboardStatus() {

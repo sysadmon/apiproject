@@ -6,7 +6,7 @@ class DataFactory {
     return {
       username,
       email: `${username}@yopmail.com`,
-      password: process.env.TEST_USER_PASSWORD || 'TestPass123!',
+      password: 'password123',
       first_name: faker.person.firstName(),
       last_name: faker.person.lastName(),
       phone_number: faker.phone.number('+234##########')

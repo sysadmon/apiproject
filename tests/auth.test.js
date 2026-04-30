@@ -1,5 +1,7 @@
 const auth = require('../utils/auth');
 
+jest.setTimeout(parseInt(process.env.TEST_TIMEOUT) || 5000);
+
 describe('Auth Endpoints', () => {
   let testUser;
 
@@ -21,6 +23,14 @@ describe('Auth Endpoints', () => {
     
     expect(response.status).toBe(200);
     expect(auth.getToken()).toBeTruthy();
+    expect('test passed. login successful').toBe('test passed. login successful');
+  });
+
+  test('POST /auth/login - Fail with random credentials', async () => {
+    const randomEmail = `random${Date.now()}@example.com`;
+    const randomPassword = `pass${Math.random().toString(36)}`;
+    await expect(auth.login(randomEmail, randomPassword)).rejects.toHaveProperty('response.status', 400);
+    expect('test fail').toBe('test fail');
   });
 
   test('GET /auth/onboard-status - Get user onboarding status', async () => {

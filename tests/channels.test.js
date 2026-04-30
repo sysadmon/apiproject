@@ -2,9 +2,11 @@ const apiClient = require('../utils/apiClient');
 const auth = require('../utils/auth');
 const DataFactory = require('../utils/dataFactory');
 
+jest.setTimeout(parseInt(process.env.TEST_TIMEOUT) || 5000);
+
 describe('Channel Endpoints', () => {
   beforeAll(async () => {
-    await auth.registerAndLogin();
+    await auth.ensureTestUserLoggedIn();
     // Create org if not exists from previous test
     if (!auth.getOrgId()) {
       const org = await apiClient.post('/organisations', DataFactory.createOrganisation());

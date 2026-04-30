@@ -1,9 +1,11 @@
 const apiClient = require('../utils/apiClient');
 const auth = require('../utils/auth');
 
+jest.setTimeout(parseInt(process.env.TEST_TIMEOUT) || 5000);
+
 describe('Blog Endpoints', () => {
   beforeAll(async () => {
-    await auth.registerAndLogin();
+    await auth.ensureTestUserLoggedIn();
   });
 
   test('GET /blog_categories - Get all blog categories', async () => {

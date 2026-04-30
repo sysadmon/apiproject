@@ -2,9 +2,11 @@ const apiClient = require('../utils/apiClient');
 const auth = require('../utils/auth');
 const DataFactory = require('../utils/dataFactory');
 
+jest.setTimeout(parseInt(process.env.TEST_TIMEOUT) || 5000);
+
 describe('Organisation Endpoints', () => {
   beforeAll(async () => {
-    await auth.registerAndLogin();
+    await auth.ensureTestUserLoggedIn();
   });
 
   test('POST /organisations - Create a new organisation', async () => {
