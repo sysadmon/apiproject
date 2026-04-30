@@ -2,7 +2,7 @@ const { faker } = require('@faker-js/faker');
 
 class DataFactory {
   static createUser() {
-    const username = faker.internet.userName().toLowerCase() + faker.string.alphanumeric(4);
+    const username = faker.internet.username().toLowerCase() + faker.string.alphanumeric(4);
     return {
       username,
       email: `${username}@yopmail.com`,

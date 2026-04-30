@@ -9,11 +9,28 @@ class AuthManager {
     this.currentOrgId = null;
   }
 
-  async register() {
-    const userData = DataFactory.createUser();
+  async register(email, password, username, first_name, last_name, phone_number) {
+    // If called with no parameters, use DataFactory (for backward compatibility)
+    if (!email) {
+      const userData = DataFactory.createUser();
+      const response = await apiClient.post('/auth/register', userData);
+      this.currentUser = userData;
+      return { response, userData };
+    }
+
+    // Otherwise, use provided parameters
+    const userData = {
+      email: email || '',
+      password: password || '',
+      username: username || '',
+      first_name: first_name || '',
+      last_name: last_name || '',
+      phone_number: phone_number || ''
+    };
+
     const response = await apiClient.post('/auth/register', userData);
     this.currentUser = userData;
-    return { response, userData };
+    return response;
   }
 
   async login(email, password) {
