@@ -9,6 +9,5 @@ API automation test suite for `https://api.staging.zedu.chat/api/v1/` using Node
 ## Setup
 
 1. Clone the repository
-```bash
 git clone <repo-url>
 cd apiproject
