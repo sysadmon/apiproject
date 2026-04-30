@@ -262,9 +262,13 @@ describe('Auth Endpoints - Register Tests', () => {
       expect(response.data).toBeDefined();
       console.log('✓ Register Test 4 PASSED: Blank email with password handled by API with status', response.status);
     } catch (error) {
-      expect(error.response?.status).toBeGreaterThanOrEqual(400);
-      expect(error.response?.data).toBeDefined();
-      console.log('✓ Register Test 4 PASSED: Blank email correctly rejected with status', error.response?.status);
+      if (error.response && error.response.status) {
+        expect(error.response.status).toBeGreaterThanOrEqual(400);
+        console.log('✓ Register Test 4 PASSED: Blank email correctly rejected with status', error.response.status);
+      } else {
+        console.log('✗ Register Test 4 FAILED: Unexpected error', error.message);
+        throw error;
+      }
     }
   });
 
@@ -298,9 +302,13 @@ describe('Auth Endpoints - Register Tests', () => {
       expect(response.data).toBeDefined();
       console.log('✓ Register Test 6 PASSED: Blank email and password handled by API with status', response.status);
     } catch (error) {
-      expect(error.response?.status).toBeGreaterThanOrEqual(400);
-      expect(error.response?.data).toBeDefined();
-      console.log('✓ Register Test 6 PASSED: Blank email and password correctly rejected with status', error.response?.status);
+      if (error.response && error.response.status) {
+        expect(error.response.status).toBeGreaterThanOrEqual(400);
+        console.log('✓ Register Test 6 PASSED: Blank email and password correctly rejected with status', error.response.status);
+      } else {
+        console.log('✗ Register Test 6 FAILED: Unexpected error', error.message);
+        throw error;
+      }
     }
   });
 
