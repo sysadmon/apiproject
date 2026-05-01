@@ -24,3 +24,9 @@ cd apiproject
 2. Copy the entire code and paste in a new file with the name .env and save in your base folder
 
 3. run npm test
+
+
+Author
+======
+Muhammed Awal Salawu (AwalProMax)
+https://github.com/sysadmon/apiproject
