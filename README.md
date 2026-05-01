@@ -9,8 +9,7 @@ This is an Automated API test suite for Zedu Chat staging API `https://api.stagi
 - axios: "^1.15.2"
 - dotenv: "^16.6.1"
 - mocha: "^11.7.5"
-- jest": 29.7.0
-- supertest": 7.0.0
+
 
 ### Setup Instructions
 1. Clone the repository
