@@ -10,14 +10,7 @@ Node.js >= 18.0.0, npm >= 9.0.0, @faker-js/faker": "^9.3.0", axios: "^1.15.2", d
 1. Clone the repository
 git clone https://github.com/sysadmon/apiproject
 cd apiproject
-
-### How to run the full test suites
-
-1. open google doc file from the URL https://docs.google.com/document/d/1Zt5c4Wep3BwmROjITcg-0zDFxhk1AVnwDpVj5EyySDw/edit?tab=t.0
-
-2. Copy the entire code and paste in a new file with the name .env and save in your base folder
-
-3. run npm test
+run npm test
 
 
 Author
