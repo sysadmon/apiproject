@@ -1,0 +1,34 @@
+{
+  "name": "apiproject",
+  "version": "1.0.0",
+  "description": "API test suite for testimonials, help center, agents, newsletter and optin",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha \"tests/**/*.test.js\" --timeout 30000 --reporter spec",
+    "test:ci": "mocha \"tests/**/*.test.js\" --timeout 30000 --reporter mocha-multi-reporters --reporter-options configFile=mocha-reporter-config.json",
+    "test:watch": "mocha \"tests/**/*.test.js\" --timeout 30000 --watch"
+  },
+  "keywords": [
+    "api",
+    "testing",
+    "mocha",
+    "chai"
+  ],
+  "author": "sysadmon",
+  "license": "MIT",
+  "devDependencies": {
+    "@faker-js/faker": "^9.0.0",
+    "chai": "^5.1.1",
+    "mocha": "^7.2.0",
+    "mocha-junit-reporter": "^2.2.1",
+    "mocha-multi-reporters": "^1.5.1",
+    "mochawesome": "^7.1.3"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
