@@ -1,5 +1,10 @@
 require('dotenv').config();
-const { expect } = require('chai');
+import('chai').then(({ expect: expectFn }) => {
+  global.expect = expectFn;
+}).catch(err => {
+  console.error('Failed to load chai:', err);
+  process.exit(1);
+});
 // ... rest
 //const { expect } = require('chai');
 const DataFactory = require('../utils/dataFactory');
