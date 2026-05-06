@@ -1,30 +1,25 @@
 {
-  "name": "apiproject",
+  "name": "zedu-api-automation",
   "version": "1.0.0",
-  "description": "API test suite for testimonials, help center, agents, newsletter and optin",
-  "main": "index.js",
+  "description": "API automation for Zedu Chat using Mocha + Axios",
   "scripts": {
-    "test": "mocha \"tests/**/*.test.js\" --timeout 30000 --reporter spec",
-    "test:ci": "mocha \"tests/**/*.test.js\" --timeout 30000 --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results/junit.xml",
-    "test:watch": "mocha \"tests/**/*.test.js\" --timeout 30000 --watch"
-  },
-  "keywords": [
-    "api",
-    "testing",
-    "mocha",
-    "chai"
-  ],
-  "author": "sysadmon",
-  "license": "MIT",
-  "devDependencies": {
-    "@faker-js/faker": "^9.0.0",
-    "chai": "^5.1.1",
-    "mocha": "^10.7.3",
-    "mocha-junit-reporter": "^2.2.1"
+    "test"
+:
+"mocha \"tests/**/*.test.js\" --timeout 30000 --reporter spec",
+"test:ci"
+:
+"mocha \"tests/**/*.test.js\" --timeout 30000 --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results/junit.xml"
   },
   "dependencies": {
-    "axios": "^1.7.7",
-    "dotenv": "^16.4.5"
+    "@faker-js/faker": "^9.9.0",
+    "axios": "^1.16.0",
+    "chai": "^4.5.0",
+    "dotenv": "^16.6.1"
+  },
+  "devDependencies": {
+    "mocha": "^11.7.5",
+    "mocha-junit-reporter": "^2.2.1",
+    "mochawesome": "^7.1.4"
   },
   "engines": {
     "node": ">=18.0.0"
