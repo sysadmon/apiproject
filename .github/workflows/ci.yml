@@ -1,52 +1,31 @@
-name: CI
+name: CI Pipeline
 
 on:
   push:
-    branches: ["**"]
+    branches: [ main, develop ]
   pull_request:
-    branches: ["**"]
-  workflow_dispatch:
+    branches: [ main ]
 
 jobs:
   test:
-    name: Run Test Suite
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Create test-results directory
-        run: mkdir -p test-results
-
-      - name: Run tests (JUnit XML report)
-        run: npm run test:ci
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
         
-      - name: Debug environment variables
-        run: |
-          echo "BASE_URL is set: ${{ secrets.BASE_URL != '' }}"
-          echo "BASE_URL length: ${#BASE_URL}"
-        env:
-          TEST_USER: ${{ secrets.TEST_USER }}
-          TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
-          BASE_URL: ${{ secrets.BASE_URL }}
-          TEST_TIMEOUT: ${{ secrets.TEST_TIMEOUT }}
-          INVALID_EMAIL_DOMAIN: ${{ secrets.INVALID_EMAIL_DOMAIN }}
-          ALREADY_REGISTERED_EMAIL: ${{ secrets.ALREADY_REGISTERED_EMAIL }}
-
-      - name: Upload JUnit XML test report
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: test-results
-          path: test-results/results.xml
-          retention-days: 30
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run tests
+      run: npm run test:ci
+      env:
+        BASE_URL: ${{ secrets.BASE_URL }}
+        TEST_USER: ${{ secrets.TEST_USER }}
+        TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
