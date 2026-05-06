@@ -1,53 +1,45 @@
-name: CI Pipeline
+name: CI
 
 on:
   push:
-    branches: [ main, master, develop ]
+    branches: ["**"]
   pull_request:
-    branches: [ main, master, develop ]
+    branches: ["**"]
 
 jobs:
   test:
+    name: Run Test Suite
     runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x] # Test multiple Node versions
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
-      - name: Setup Node.js ${{ matrix.node-version }}
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      
+          node-version: "18"
+          cache: "npm"
+
       - name: Install dependencies
-        run: npm ci # Fails if package-lock.json is out of sync
-      
-      - name: Run tests with JUnit report
+        run: npm ci
+
+      - name: Create test-results directory
+        run: mkdir -p test-results
+
+      - name: Run tests (JUnit XML report)
         run: npm run test:ci
         env:
-          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+          # Inject all your .env variables from GitHub Secrets
           TEST_USER: ${{ secrets.TEST_USER }}
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
-          INVALID_EMAIL_DOMAIN: ${{ secrets.INVALID_EMAIL_DOMAIN }}
-      
-      - name: Upload JUnit test results
-        if: always() # Upload even if tests fail
+          BASE_URL: ${{ secrets.BASE_URL }}
+          # Add any other .env variables you have here using the same pattern
+
+      - name: Upload JUnit XML test report
         uses: actions/upload-artifact@v4
-        with:
-          name: test-results-node-${{ matrix.node-version }}
-          path: test-results/junit.xml
-          retention-days: 30
-      
-      - name: Publish Test Report
         if: always()
-        uses: dorny/test-reporter@v1
         with:
-          name: Mocha Tests
-          path: test-results/junit.xml
-          reporter: java-junit
-          fail-on-error: true
+          name: test-results
+          path: test-results/results.xml
+          retention-days: 30
