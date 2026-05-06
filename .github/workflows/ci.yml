@@ -5,6 +5,8 @@ on:
     branches: ["**"]
   pull_request:
     branches: ["**"]
+      workflow_dispatch:   # ← this enables the manual "Run workflow" button
+
 
 jobs:
   test:
