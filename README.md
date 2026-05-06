@@ -78,13 +78,6 @@ You run a test by running the command below
 
 npm test
 
-CI Badge (GitHub Actions)
-
-The CI badge shows the current status of the pipeline:
-
-* ✅ Green = Passing
-* ❌ Red = Failing
-
 
 Summary
 
