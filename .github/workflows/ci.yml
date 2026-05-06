@@ -30,6 +30,11 @@ jobs:
 
       - name: Run tests (JUnit XML report)
         run: npm run test:ci
+        
+      - name: Debug environment variables
+        run: |
+          echo "BASE_URL is set: ${{ secrets.BASE_URL != '' }}"
+          echo "BASE_URL length: ${#BASE_URL}"
         env:
           TEST_USER: ${{ secrets.TEST_USER }}
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
