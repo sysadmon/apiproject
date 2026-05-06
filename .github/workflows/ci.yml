@@ -36,7 +36,7 @@ jobs:
 
       - name: Debug - confirm variables are loaded
         run: |
-          echo "BASE_URL is set: ${{ vars.BASE_URL != '' }}"
+          echo "BASE_URL is set: ${{ secrets.BASE_URL != '' }}"
           echo "TEST_USER is set: ${{ vars.TEST_USER != '' }}"
           echo "TEST_USER_PASSWORD is set: ${{ secrets.TEST_USER_PASSWORD != '' }}"
           echo "TEST_TIMEOUT: ${{ vars.TEST_TIMEOUT }}"
