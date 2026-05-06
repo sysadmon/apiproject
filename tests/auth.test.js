@@ -41,7 +41,7 @@ describe('Auth Endpoints', function () {
   });
 
   describe('POST /auth/register', () => {
-    it('i. Should register user with all valid entries', async () => {
+    it('ii. Should register user with all valid entries', async () => {
       const originalAuth = api.defaults.headers.common['Authorization'];
       delete api.defaults.headers.common['Authorization'];
       
@@ -52,7 +52,7 @@ describe('Auth Endpoints', function () {
       expect(res.status).to.equal(201);
     });
 
-    it('ii. Should reject email domain yopmail.com from .env', async () => {
+    it('iii. Should reject email domain yopmail.com from .env', async () => {
       const originalAuth = api.defaults.headers.common['Authorization'];
       delete api.defaults.headers.common['Authorization'];
       
@@ -72,7 +72,7 @@ describe('Auth Endpoints', function () {
       console.log('✓ Test passed: API correctly rejected invalid email with 400');
     });
 
-    it('iii. Should reject email with special character @@', async () => {
+    it('iv. Should reject email with special character @@', async () => {
       const originalAuth = api.defaults.headers.common['Authorization'];
       delete api.defaults.headers.common['Authorization'];
       
@@ -93,7 +93,7 @@ describe('Auth Endpoints', function () {
       console.log(`✓ Test passed: API correctly rejected email with @@ using ${res.status}`);
     });
 
-    it('iv. Should handle leading/trailing space in email', async () => {
+    it('v. Should handle leading/trailing space in email', async () => {
       const originalAuth = api.defaults.headers.common['Authorization'];
       delete api.defaults.headers.common['Authorization'];
       
@@ -106,7 +106,7 @@ describe('Auth Endpoints', function () {
   });
 
     describe('POST /auth/login', () => {
-    it('v. Should login with TEST_USER from .env', async () => {
+    it('vi. Should login with TEST_USER from .env', async () => {
       console.log('Email:', process.env.TEST_USER);
       console.log('Password:', process.env.TEST_USER_PASSWORD ? '***' : 'undefined');
       
@@ -121,7 +121,7 @@ describe('Auth Endpoints', function () {
       expect(res.status).to.equal(200);
     });
 
-    it('vi. Should reject unregistered user login', async () => {
+    it('vii. Should reject unregistered user login', async () => {
       const originalAuth = api.defaults.headers.common['Authorization'];
       delete api.defaults.headers.common['Authorization'];
       
@@ -144,7 +144,7 @@ describe('Auth Endpoints', function () {
   });
 
   describe('POST /auth/password-reset', () => {
-    it('viii. Should request reset for valid TEST_USER email', async () => {
+    it('ix. Should request reset for valid TEST_USER email', async () => {
       const originalAuth = api.defaults.headers.common['Authorization'];
       delete api.defaults.headers.common['Authorization'];
       
@@ -154,7 +154,7 @@ describe('Auth Endpoints', function () {
       expect(res.status).to.be.oneOf([200, 202]);
     });
 
-    it('ix. Should reject password reset for unregistered email', async () => {
+    it('x. Should reject password reset for unregistered email', async () => {
       const originalAuth = api.defaults.headers.common['Authorization'];
       delete api.defaults.headers.common['Authorization'];
       
@@ -164,7 +164,7 @@ describe('Auth Endpoints', function () {
       expect(res.status, 'API should not leak user existence or should reject').to.be.oneOf([400, 404, 200]);
     });
 
-    it('x. Should reject password reset when email is missing', async () => {
+    it('xi. Should reject password reset when email is missing', async () => {
       const originalAuth = api.defaults.headers.common['Authorization'];
       delete api.defaults.headers.common['Authorization'];
       

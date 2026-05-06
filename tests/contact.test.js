@@ -1,9 +1,8 @@
-require('dotenv').config();
 const { expect } = require('chai');
 const DataFactory = require('../utils/dataFactory');
 const auth = require('../utils/auth');
 const api = auth.getApiClient();
-
+require('dotenv').config();
 
 before(async function () {
   this.timeout(30000);

@@ -18,21 +18,21 @@ before(async function () {
 });
 
 describe('POST /organisations', function () {
-  it('xvii. Should create organisation with valid data', async () => {
+  it('xxiv. Should create organisation with valid data', async () => {
     const org = DataFactory.validOrganisation();
     const res = await api.post('/organisations', org);
     expect(res.status).to.equal(201);
     expect(res.data.data).to.have.property('id');
   });
 
-  it('xviii. Should handle email with leading/trailing space', async () => {
+  it('xxv. Should handle email with leading/trailing space', async () => {
     const org = DataFactory.validOrganisation();
     org.email = `  ${org.email}  `;
     const res = await api.post('/organisations', org);
     expect(res.status, 'API should trim or reject spaced email').to.be.oneOf([201, 400, 422]);
   });
 
-  it('xix. Should handle email space appropriately', async () => {
+  it('xxvi. Should handle email space appropriately', async () => {
     const org = DataFactory.validOrganisation();
     const originalEmail = org.email;
     org.email = `  ${originalEmail}  `;
