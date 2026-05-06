@@ -25,11 +25,29 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Debug - confirm test files exist
+        run: |
+          echo "=== Repo structure ==="
+          ls -la
+          echo "=== Test folder ==="
+          ls -la tests/ || echo "NO tests/ folder found"
+          echo "=== Test files found ==="
+          find . -name "*.test.js" | sort
+
+      - name: Debug - confirm variables are loaded
+        run: |
+          echo "BASE_URL is set: ${{ vars.BASE_URL != '' }}"
+          echo "TEST_USER is set: ${{ vars.TEST_USER != '' }}"
+          echo "TEST_USER_PASSWORD is set: ${{ secrets.TEST_USER_PASSWORD != '' }}"
+          echo "TEST_TIMEOUT: ${{ vars.TEST_TIMEOUT }}"
+          echo "INVALID_EMAIL_DOMAIN: ${{ vars.INVALID_EMAIL_DOMAIN }}"
+          echo "ALREADY_REGISTERED_EMAIL: ${{ vars.ALREADY_REGISTERED_EMAIL }}"
+
       - name: Run tests
-        run: npx mocha "tests/**/*.test.js" --timeout 90000 --reporter spec --exit
+        run: npx mocha --recursive tests --timeout 90000 --reporter spec --exit
         env:
           TEST_USER: ${{ vars.TEST_USER }}
-          TEST_USER_PASSWORD: ${{ vars.TEST_USER_PASSWORD }}
+          TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
           BASE_URL: ${{ vars.BASE_URL }}
           TEST_TIMEOUT: ${{ vars.TEST_TIMEOUT }}
           INVALID_EMAIL_DOMAIN: ${{ vars.INVALID_EMAIL_DOMAIN }}
