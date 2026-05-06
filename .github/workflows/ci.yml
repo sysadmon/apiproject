@@ -34,9 +34,9 @@ jobs:
           TEST_USER: ${{ secrets.TEST_USER }}
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
           BASE_URL: ${{ secrets.BASE_URL }}
-		  TEST_TIMEOUT: =${{ secrets.TEST_TIMEOUT }}
-		  INVALID_EMAIL_DOMAIN: =${{ secrets.INVALID_EMAIL_DOMAIN }}
-		  ALREADY_REGISTERED_EMAIL: =${{ secrets.ALREADY_REGISTERED_EMAIL }}
+		  TEST_TIMEOUT: ${{ secrets.TEST_TIMEOUT }}
+		  INVALID_EMAIL_DOMAIN: ${{ secrets.INVALID_EMAIL_DOMAIN }}
+		  ALREADY_REGISTERED_EMAIL: ${{ secrets.ALREADY_REGISTERED_EMAIL }}
 		  
 
       - name: Upload JUnit XML test report
