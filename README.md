@@ -10,65 +10,59 @@ What is a Pipeline?
 ===================
 A pipeline is an automated workflow that tests and validates your code every time you make changes, ensuring it works correctly before moving forward. The CI pipeline is responsible for automatically running tests whenever changes are made to the repository.
 
-How It Works
-============
-Code Push / Pull Request Trigger <br />
-Any push or pull request triggers the CI pipeline.
-<br />
-Environment Setup
-==================
-The pipeline sets up the required runtime and dependencies.<br />
+How It Works  
+============  
+Code Push / Pull Request Trigger  
+Any push or pull request triggers the CI pipeline.  
 
-Test Execution
-==============
-API tests are executed using predefined scripts. After the test run, the pipeline checks if all tests pass successfully.
+Environment Setup  
+==================  
+The pipeline sets up the required runtime and dependencies.  
 
-Result Reporting
-================
-If tests pass → ✅ Pipeline succeeds<br />
-If tests fail → ❌ Pipeline fails and logs errors<br />
-<br />
-Link to the Projects Successful Pipeline Run: https://github.com/sysadmon/apiproject/actions/runs/25444953064
-<br />
-CI Status Badge https://github.com/sysadmon/apiproject/actions/workflows/ci.yml/badge.svg
-<br />
-Instructions to Run the Project Locally
-=======================================
-Follow these steps to run the project on your local machine:
+Test Execution  
+==============  
+API tests are executed using predefined scripts. After the test run, the pipeline checks if all tests pass successfully.  
 
-Step 1. Download and install Install VS Code or your desired code editor <br />
-Step 2. Download and Install Git <br />
-Step 3. Clone the Repository using the command below:
-<br />
+Result Reporting  
+================  
+If tests pass → ✅ Pipeline succeeds    
+If tests fail → ❌ Pipeline fails and logs errors    
+Link to the Projects Successful Pipeline Run: https://github.com/sysadmon/apiproject/actions/runs/25444953064  
+CI Status Badge https://github.com/sysadmon/apiproject/actions/workflows/ci.yml/badge.svg  
+
+Instructions to Run the Project Locally  
+=======================================  
+Follow these steps to run the project on your local machine:  
+
+Step 1. Download and install Install VS Code or your desired code editor  
+Step 2. Download and Install Git  
+Step 3. Clone the Repository using the command below:  
 git clone https://github.com/sysadmon/apiproject
-cd apiproject
-<br />
-Step 4: Install Dependencies
-From the terminal, run the command below
-npm install
-<br />
-Step 5: Set Environment Variables
-<br />
-Create a .env file in the root directory and add the required variables (see section below).
+cd apiproject  
+Step 4: Install Dependencies  
+From the terminal, run the command below  
+npm install  
+Step 5: Set Environment Variables  
+Create a .env file in the root directory and add the required variables (see section below).  
 
-Environment Variables Used
-==========================
-The following environment variables are required for the project to run properly:
+Environment Variables Used  
+==========================  
+The following environment variables are required for the project to run properly:  
 
-Variable Name		    Sample data                              Description<br />
-BASE_URL			      https://api.staging.zedu.chat/api/v1     Base URL of the API being tested<br />
-TEST_USER			      user_name_of_the_tester                  Username for test authentication<br />
-TEST_USER_PASSWORD	password_of_the_tester                   Password for the test user<br />
-TEST_TIMEOUT		    test_time_out                            Timeout duration for API requests<br />
+Variable Name		    Sample data                              Description  
+BASE_URL			      https://api.staging.zedu.chat/api/v1     Base URL of the API being tested  
+TEST_USER			      user_name_of_the_tester                  Username for test authentication  
+TEST_USER_PASSWORD	password_of_the_tester                   Password for the test user  
+TEST_TIMEOUT		    test_time_out                            Timeout duration for API requests  
+
 <br />
-Step 6: Run Tests<br />
+Step 6: Run Tests  
 You run a test by running the command below<br />
 npm test
 
 Summary
 ========
-This project showcases how a CI pipeline can:
-<br />  
+This project showcases how a CI pipeline can:  <br />  
 ->>Automatically test your API<br />
 ->>Catch bugs early<br />
 ->>Improve development workflow<br />
