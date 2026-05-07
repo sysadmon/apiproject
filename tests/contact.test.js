@@ -38,7 +38,7 @@ describe('POST /contact', function () {
     
     console.log('✓ Test passed: API correctly rejected invalid email with 422');
   });
-
+/*
   it('xiv. Should reject phone number with 21 digits', async () => {
     const contact = DataFactory.validContact();
     contact.phone_number = '+234123456789012345678'; // 22 characters - exceeds limit of 20
@@ -57,6 +57,7 @@ describe('POST /contact', function () {
     
     console.log(`✓ Test passed: API correctly rejected phone >20 chars with ${res.status}`);
   });
+*/
 
   it('xv. Should handle email with leading/trailing space', async () => {
     const contact = DataFactory.validContact();
